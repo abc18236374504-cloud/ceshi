@@ -38,10 +38,10 @@
             $url = "https://api.52vmy.cn/api/chat/spark?msg=" . $msg;
             $response = file_get_contents($url);
             $data = json_decode($response, true);
-            if ($data && $data['code'] == 200) {
+            if ($data && isset($data['data']['answer']) && $data['code'] == 200) {
                 echo '<div class="result">';
                 echo '<h2>生成的文案：</h2>';
-                echo '<p>' . nl2br(htmlspecialchars($data['content'])) . '</p>';
+                echo '<p>' . nl2br(htmlspecialchars($data['data']['answer'])) . '</p>';
                 echo '</div>';
             } else {
                 echo '<div class="result">';
